@@ -71,7 +71,25 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-
+  // update a category by its `id` value
+  Category.update(req.body, {
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then(data => {
+    // if the id provided is not available in the database, then send a message back, (No user found with this id), else send the data as json format
+    if (!data) {
+      res.status(404).json({ message: 'No category found with this id' });
+      return;
+    }
+    res.json(data);
+  })
+  // catch if there is any errors caused by the server, if so send a 500 server error 
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 router.delete('/:id', (req, res) => {
