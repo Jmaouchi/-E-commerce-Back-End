@@ -65,12 +65,44 @@ router.get('/:id', (req, res) => {
 // Post a new tag to the Tag model
 router.post('/', (req, res) => {
   // create a new tag
+  Tag.create({
+    tag_name: req.body.tag_name,
+  })
+  .then(dbPostData => {
+    if (!dbPostData) {
+      res.status(404).json({ message: 'No Tags found' });
+      return;
+    }
+    res.json(dbPostData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 
 // UPDATE an  existing tag in the Tag model
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  Tag.update(req.body, {
+    where: {
+      id: req.params.id,
+    }
+  })
+  .then(data => {
+    // if the id provided is not available in the database, then send a message back, (No tag found with this id), else send the data as json format
+    if (!data) {
+      res.status(404).json({ message: 'No tags found with this id' });
+      return;
+    }
+    res.json(data);
+  })
+  // catch if there is any errors caused by the server, if so send a 500 server error 
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 
@@ -78,6 +110,22 @@ router.put('/:id', (req, res) => {
 // DELETE an existing tag in the Tag model
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Tag.destroy({
+    where: {
+      id:req.params.id,
+    },
+  })
+  .then(dbPostData => {
+    if (!dbPostData) {
+      res.status(404).json({ message: 'No Product found with this id' });
+      return;
+    }
+    res.json(dbPostData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
