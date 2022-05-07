@@ -121,12 +121,13 @@ SOFTWARE
 
   # Watch me do it here: by clicking here  
 
-  - Category model: 
+  - Set_Up: https://github.com/Jmaouchi/-E-commerce-Back-End/issues/5
   
-  - Product model: 
+  - Start App:  https://github.com/Jmaouchi/-E-commerce-Back-End/issues/6
 
-  - Tag model: 
+  - Insomnia Test 1: https://github.com/Jmaouchi/-E-commerce-Back-End/issues/7
 
+  - Insomnia Test 2: https://github.com/Jmaouchi/-E-commerce-Back-End/issues/8
 
   ## Link:  
    
