@@ -3,7 +3,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+// get all products from the product model and include the category name
 router.get('/', (req, res) => {
   // find all categories
   Product.findAll({
@@ -37,7 +37,8 @@ router.get('/', (req, res) => {
     });
 });
 
-// get one product
+// get one product from the product model and include the category name, when the category.id is equal to the product.id (that is in the categroy model)
+// and name that collumn category_id
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   Product.findOne({
@@ -74,7 +75,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create new product
+// create new product 
 router.post('/', (req, res) => {
   Product.create(req.body)
     .then((product) => {
@@ -147,7 +148,7 @@ router.delete('/:id', (req, res) => {
   Product.destroy({
     where: {
       id:req.params.id,
-    }
+    },
   })
   .then(dbPostData => {
     if (!dbPostData) {

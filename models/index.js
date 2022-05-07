@@ -4,19 +4,21 @@ const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
-// Products belongsTo Category,l
+// Products belongsTo Category and that means that a product can only have 1 Category
 Product.belongsTo(Category, {
-  foreignKey: 'category_id'  //which is in the Product mode
+  foreignKey: 'category_id'  // which is in the Product model
 }); 
 
+
+// Category hasMany Products and that means that a Category can only many products 
 Category.hasMany(Product, {
   foreignKey: 'category_id'
 });
 
-// Products belongToMany Tags (through ProductTag)
+// Products belongToMany Tags (through ProductTag) 
 Product.belongsToMany(Tag, {
   through: ProductTag,
-  foreignKey: 'product_id'  
+  foreignKey: 'product_id' 
 })
 
 // Tags belongToMany Products (through ProductTag)

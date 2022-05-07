@@ -3,6 +3,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
+// get all products from the product model and include the category name
 router.get('/', (req, res) => {
   // find all categories
   Tag.findAll({
@@ -31,6 +32,8 @@ router.get('/', (req, res) => {
     });
 });
 
+
+// get one tag from the Tag model and include all collumns from Product model
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   Tag.findOne( {
@@ -58,6 +61,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
+
+// Post a new tag to the Tag model
 router.post('/', (req, res) => {
   // create a new tag
   Tag.create({
@@ -76,6 +81,8 @@ router.post('/', (req, res) => {
   });
 });
 
+
+// UPDATE an  existing tag in the Tag model
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   Tag.update(req.body, {
@@ -84,7 +91,7 @@ router.put('/:id', (req, res) => {
     }
   })
   .then(data => {
-    // if the id provided is not available in the database, then send a message back, (No user found with this id), else send the data as json format
+    // if the id provided is not available in the database, then send a message back, (No tag found with this id), else send the data as json format
     if (!data) {
       res.status(404).json({ message: 'No tags found with this id' });
       return;
@@ -98,22 +105,23 @@ router.put('/:id', (req, res) => {
   });
 });
 
+
+
+// DELETE an existing tag in the Tag model
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
-  Tag.destroy(req.body, {
+  // delete one product by its `id` value
+  Tag.destroy({
     where: {
-      id: req.params.id,
-    }
+      id:req.params.id,
+    },
   })
-  .then(data => {
-    // if the id provided is not available in the database, then send a message back, (No user found with this id), else send the data as json format
-    if (!data) {
-      res.status(404).json({ message: 'No tags found with this id' });
+  .then(dbPostData => {
+    if (!dbPostData) {
+      res.status(404).json({ message: 'No Product found with this id' });
       return;
     }
-    res.json(data);
+    res.json(dbPostData);
   })
-  // catch if there is any errors caused by the server, if so send a 500 server error 
   .catch(err => {
     console.log(err);
     res.status(500).json(err);

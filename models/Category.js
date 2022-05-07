@@ -2,7 +2,9 @@
 const { Model, DataTypes } = require('sequelize');
 // import the connection to the db 
 const sequelize = require('../config/connection.js');
-// create Category Model
+
+
+// Initialize Category model (table) by extending off Sequelize's Model class
 class Category extends Model {}
 
 Category.init( 
