@@ -74,14 +74,14 @@ SOFTWARE
     and more. Featuring solid transaction support, relations, eager and lazy loading, read replication and more.
 
 
-   **5. [Dotenv](https://Dotenv.com/)**
+  **5. [Dotenv](https://Dotenv.com/)** :
 
-    * DotEnv is a lightweight npm package that automatically loads environment variables from a . env file into the process.
+  * DotEnv is a lightweight npm package that automatically loads environment variables from a . env file into the process.
 
 
-   **5. [Insomina](https://https://insomnia.rest/)**  
+  **6. [Insomina](https://https://insomnia.rest/)** :
 
-   * Insomnia is a Free Tool for Testing and Validating Results of RESTful applications that comes with exceptional features like sharable environments, plugin hub, end-to-end encryption, and much more
+  * Insomnia is a Free Tool for Testing and Validating Results of RESTful applications that comes with exceptional features like sharable environments, plugin hub, end-to-end encryption, and much more
 
     
   # Instalation:
