@@ -80,13 +80,15 @@ router.post('/', (req, res) => {
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
+      if (req.body.tagIds && req.body.tagIds.length) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
             tag_id,
           };
         });
+        //When you need to insert multiple rows to your SQL database table, you can use the Sequelize bulkCreate() method.
+        // The bulkCreate() method allows you to insert multiple records to your database table with a single function call
         return ProductTag.bulkCreate(productTagIdArr);
       }
       // if no product tags, just respond
